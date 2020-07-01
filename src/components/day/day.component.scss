@@ -1,0 +1,12 @@
+.day {
+  background: #fff;
+  cursor: pointer;
+  height: 10em;
+  padding: 10px;
+  text-align: right;
+  transition: background ease-in-out 350ms;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
