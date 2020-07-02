@@ -9,7 +9,7 @@ class Calendar extends React.Component {
     super(props);
     const currentDate = new Date();
     this.state = {
-      currentDay: currentDate.getDay(),
+      currentDay: currentDate.getDate(),
       currentMonth: currentDate.toLocaleString('default', { month: 'long' }),
       totalDays: new Date(currentDate.getMonth(), currentDate.getFullYear(), 0).getDate(),
     };
@@ -19,7 +19,7 @@ class Calendar extends React.Component {
     const listOfDays = [];
 
     for (let day = 1; day <= this.state.totalDays + 1; day++) {
-      listOfDays.push(<Day dayNumber={day} />)
+      listOfDays.push(<Day current={day === this.state.currentDay} dayNumber={day} key={day} />)
     }
 
     return listOfDays;

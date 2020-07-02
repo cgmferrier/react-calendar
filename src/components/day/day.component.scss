@@ -9,4 +9,12 @@
   &:hover {
     background: #f5f5f5;
   }
+
+  &__number {
+    .day--current & {
+      background: red;
+      border-radius: 25%;
+      color: #f5f5f5;
+    }
+  }
 }
