@@ -1,13 +1,6 @@
 import Day from 'components/day/day.component';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { isPanelOpen } from 'store/reducers';
 import './calendar.component.scss'
-
-export const PanelOpen = () => {
-  const panelOpen = useSelector(isPanelOpen);
-  return (<div>{`${panelOpen}`}</div>);
-}
 
 class Calendar extends React.Component {
   state: { currentDay: number; currentMonth: string, totalDays: number };
@@ -35,7 +28,6 @@ class Calendar extends React.Component {
   render() {
     return (
       <section className='calendar'>
-        <PanelOpen/>
         <header className='calendar__header'>
           <h2 className='calendar__title'>{this.state.currentMonth}</h2>
           <div className='calendar__navigation'>Navigation arrows here</div>
