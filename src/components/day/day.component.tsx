@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addReminder } from 'store/actions/reminder.action';
+import { togglePanel } from 'store/actions/layout.action';
 import './day.component.scss'
 
 class Day extends React.Component<{ current: boolean; dayNumber: number, dispatch: any }, {}> {
   displayReminders(): void {
-    console.log('click');
-    this.props.dispatch(addReminder({ color: 'red', comment: 'tt', date: new Date(), time: new Date() }));
+    this.props.dispatch(togglePanel(true));
   }
 
   render() {

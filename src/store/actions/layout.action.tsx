@@ -1,6 +1,6 @@
-import { LayoutActionType } from 'store/enums';
+import { LayoutActionType } from 'shared/enums';
 
 export const togglePanel = (toggle: boolean) => ({
   type: LayoutActionType.TogglePanel,
-  payload: { panelOpen: toggle }
+  panelOpen: toggle
 });

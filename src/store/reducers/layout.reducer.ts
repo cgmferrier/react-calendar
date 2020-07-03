@@ -1,16 +1,24 @@
-import { LayoutActionType } from 'store/enums';
-import { Action, LayoutState } from 'store/interfaces';
+import { LayoutActionType } from 'shared/enums';
+import { Action } from 'shared/interfaces';
 
-const initialState: LayoutState = {
+export interface LayoutAction extends Action {
+  panelOpen: boolean;
+}
+
+export interface State {
+  panelOpen: boolean;
+}
+
+const initialState: State = {
   panelOpen: false
 };
 
-export function layoutReducer(state = initialState, action: Action<any>): LayoutState {
+export function layoutReducer(state = initialState, action: LayoutAction): State {
   switch (action.type) {
     case LayoutActionType.TogglePanel:
       return {
         ...state,
-        panelOpen: action.payload.panelOpen
+        panelOpen: action.panelOpen
       };
     default:
       return state;
