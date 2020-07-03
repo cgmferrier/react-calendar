@@ -1,20 +1,20 @@
+import { Reminder } from 'interfaces/reminder.interface';
 import { ReminderActionType } from 'store/enums/reminder-action-type.enum';
 import { Action } from 'store/interfaces/action.interface';
-import { ReminderAction } from 'store/interfaces/reminder-action.interface';
 import { ReminderState } from 'store/interfaces/reminder-state.interface';
 
 const initialState: ReminderState = {
   reminders: []
 }
 
-function addReminder(state: ReminderState, action: Action<ReminderAction>): ReminderState {
+function addReminder(state: ReminderState, action: Action<Reminder>): ReminderState {
   const reminder = { ...action.payload, id: Date.now() };
   return {
     reminders: [ ...state.reminders, reminder ],
   }
 }
 
-function removeReminder(state: ReminderState, action: Action<ReminderAction>): ReminderState {
+function removeReminder(state: ReminderState, action: Action<Reminder>): ReminderState {
   const reminders = state.reminders;
   const reminderIndex = reminders.findIndex(r => action.payload.id === r.id);
   if (reminderIndex !== -1) {
@@ -25,7 +25,7 @@ function removeReminder(state: ReminderState, action: Action<ReminderAction>): R
   return state;
 }
 
-function updateReminder(state: ReminderState, action: Action<ReminderAction>): ReminderState {
+function updateReminder(state: ReminderState, action: Action<Reminder>): ReminderState {
   const reminders = state.reminders;
   const reminderIndex = reminders.findIndex(r => r.id === action.payload.id);
   if (reminderIndex !== -1) {
@@ -37,7 +37,7 @@ function updateReminder(state: ReminderState, action: Action<ReminderAction>): R
   return state;
 }
 
-export function reminderReducer(state = initialState, action: Action<ReminderAction>): ReminderState {
+export function reminderReducer(state = initialState, action: Action<Reminder>): ReminderState {
   switch (action.type) {
     case ReminderActionType.Add:
       return addReminder(state, action);

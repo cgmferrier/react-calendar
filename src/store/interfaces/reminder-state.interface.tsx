@@ -1,3 +1,5 @@
+import { Reminder } from 'interfaces/reminder.interface';
+
 export interface ReminderState {
-  reminders: any[];
+  reminders: Reminder[];
 }

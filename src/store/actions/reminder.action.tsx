@@ -1,5 +1,5 @@
 import { Reminder } from 'interfaces/reminder.interface';
-import { ReminderActionType } from 'store/enums/reminder-action-type.enum';
+import { ReminderActionType } from 'store/enums';
 
 export const addReminder = ({ color, comment, date, time }: Reminder) => ({
   type: ReminderActionType.Add,
