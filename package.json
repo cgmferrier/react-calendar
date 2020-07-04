@@ -52,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "@types/moment": "^2.13.0",
+    "moment": "^2.27.0",
     "prettier": "2.0.5",
     "redux-devtools": "^3.5.0",
     "source-map-loader": "^1.0.1",

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 import * as fromLayout from 'store/reducers/layout.reducer';
@@ -26,4 +27,7 @@ export const isPanelOpen = createSelector(getLayoutState, (layout: fromLayout.St
 const getReminderState = (state: State) => state.reminders;
 
 export const getReminders = createSelector(getReminderState, (reminders: fromReminders.State) => reminders.reminders);
+export const getRemindersForSelectedDay = createSelector(getReminderState, (reminders: fromReminders.State) => {
+  return reminders.reminders.filter(reminder => moment(reminder.date, 'DD/MM/YYYY').isSame(moment(reminders.selectedDay)));
+});
 

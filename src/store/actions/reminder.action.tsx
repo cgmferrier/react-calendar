@@ -14,6 +14,11 @@ export const removeReminder = (id: string) => ({
   id
 });
 
+export const selectDay = (selectedDay: string) => ({
+  type: ReminderActionType.SelectDay,
+  selectedDay,
+})
+
 export const updateReminder = (id: string, update: Reminder) => ({
   type: ReminderActionType.Add,
   id,

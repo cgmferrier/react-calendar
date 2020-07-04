@@ -13,12 +13,12 @@ const initialState: State = {
   panelOpen: false
 };
 
-export function layoutReducer(state = initialState, action: LayoutAction): State {
-  switch (action.type) {
+export function layoutReducer(state = initialState, { panelOpen, type }: LayoutAction): State {
+  switch (type) {
     case LayoutActionType.TogglePanel:
       return {
         ...state,
-        panelOpen: action.panelOpen
+        panelOpen,
       };
     default:
       return state;

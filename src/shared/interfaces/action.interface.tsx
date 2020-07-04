@@ -1,3 +1,5 @@
+import { LayoutActionType, ReminderActionType } from 'shared/enums';
+
 export interface Action {
-  type: string;
+  type: LayoutActionType | ReminderActionType;
 }

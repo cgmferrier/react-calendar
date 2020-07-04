@@ -1,13 +1,16 @@
+import moment from 'moment';
 import { ReminderActionType } from 'shared/enums/reminder-action-type.enum';
 import { Action } from 'shared/interfaces';
 import { Reminder } from 'shared/interfaces/reminder.interface';
 
 export interface ReminderAction extends Action {
   reminder: Reminder;
+  selectedDay?: moment.Moment;
 }
 
 export interface State {
   reminders: Reminder[];
+  selectedDay?: moment.Moment;
 }
 
 const initialState: State = {
@@ -32,6 +35,13 @@ function removeReminder(state: State, action: ReminderAction): State {
   return state;
 }
 
+function selectDay(state: State, { selectedDay }: ReminderAction): State {
+  return {
+    ...state,
+    selectedDay,
+  };
+}
+
 function updateReminder(state: State, action: ReminderAction): State {
   const reminders = state.reminders;
   const reminderIndex = reminders.findIndex(r => r.id === action.reminder.id);
@@ -50,6 +60,8 @@ export function reminderReducer(state = initialState, action: ReminderAction): S
       return addReminder(state, action);
     case ReminderActionType.Remove:
       return removeReminder(state, action);
+    case ReminderActionType.SelectDay:
+      return selectDay(state, action);
     case ReminderActionType.Update:
       return updateReminder(state, action);
     default:
