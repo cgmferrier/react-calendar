@@ -9,5 +9,11 @@ body, html {
 }
 
 body {
-  padding: 24px;
+  padding: 2em;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
 }

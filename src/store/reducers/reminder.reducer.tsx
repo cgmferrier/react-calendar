@@ -1,22 +1,32 @@
-import { ReminderActionType } from 'store/enums/reminder-action-type.enum';
-import { Action } from 'store/interfaces/action.interface';
-import { ReminderAction } from 'store/interfaces/reminder-action.interface';
-import { ReminderState } from 'store/interfaces/reminder-state.interface';
+import moment from 'moment';
+import { ReminderActionType } from 'shared/enums/reminder-action-type.enum';
+import { Action } from 'shared/interfaces';
+import { Reminder } from 'shared/interfaces/reminder.interface';
 
-const initialState: ReminderState = {
+export interface ReminderAction extends Action {
+  reminder: Reminder;
+  selectedDay?: moment.Moment;
+}
+
+export interface State {
+  reminders: Reminder[];
+  selectedDay?: moment.Moment;
+}
+
+const initialState: State = {
   reminders: []
 }
 
-function addReminder(state: ReminderState, action: Action<ReminderAction>): ReminderState {
-  const reminder = { ...action.payload, id: Date.now() };
+function addReminder(state: State, { reminder }: ReminderAction): State {
+  const newReminder = { ...reminder, id: Date.now() };
   return {
-    reminders: [ ...state.reminders, reminder ],
+    reminders: [ ...state.reminders, newReminder ],
   }
 }
 
-function removeReminder(state: ReminderState, action: Action<ReminderAction>): ReminderState {
+function removeReminder(state: State, action: ReminderAction): State {
   const reminders = state.reminders;
-  const reminderIndex = reminders.findIndex(r => action.payload.id === r.id);
+  const reminderIndex = reminders.findIndex(r => action.reminder.id === r.id);
   if (reminderIndex !== -1) {
     return {
       reminders: [ ...reminders.splice(reminderIndex, 1) ]
@@ -25,11 +35,18 @@ function removeReminder(state: ReminderState, action: Action<ReminderAction>): R
   return state;
 }
 
-function updateReminder(state: ReminderState, action: Action<ReminderAction>): ReminderState {
+function selectDay(state: State, { selectedDay }: ReminderAction): State {
+  return {
+    ...state,
+    selectedDay,
+  };
+}
+
+function updateReminder(state: State, action: ReminderAction): State {
   const reminders = state.reminders;
-  const reminderIndex = reminders.findIndex(r => r.id === action.payload.id);
+  const reminderIndex = reminders.findIndex(r => r.id === action.reminder.id);
   if (reminderIndex !== -1) {
-    reminders[reminderIndex] = { ...reminders[reminderIndex], ...action.payload };
+    reminders[reminderIndex] = { ...reminders[reminderIndex], ...action.reminder };
     return {
       reminders,
     }
@@ -37,12 +54,14 @@ function updateReminder(state: ReminderState, action: Action<ReminderAction>): R
   return state;
 }
 
-export function reminderReducer(state = initialState, action: Action<ReminderAction>): ReminderState {
+export function reminderReducer(state = initialState, action: ReminderAction): State {
   switch (action.type) {
     case ReminderActionType.Add:
       return addReminder(state, action);
     case ReminderActionType.Remove:
       return removeReminder(state, action);
+    case ReminderActionType.SelectDay:
+      return selectDay(state, action);
     case ReminderActionType.Update:
       return updateReminder(state, action);
     default:
