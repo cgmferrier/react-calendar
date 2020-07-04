@@ -30,4 +30,5 @@ export const getReminders = createSelector(getReminderState, (reminders: fromRem
 export const getRemindersForSelectedDay = createSelector(getReminderState, (reminders: fromReminders.State) => {
   return reminders.reminders.filter(reminder => moment(reminder.date, 'DD/MM/YYYY').isSame(moment(reminders.selectedDay)));
 });
+export const getSelectedDay = createSelector(getReminderState, (reminders: fromReminders.State) => reminders.selectedDay);
 

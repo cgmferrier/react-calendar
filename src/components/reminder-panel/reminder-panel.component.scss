@@ -11,17 +11,22 @@
   transition: margin-right 350ms ease-in-out;
   width: 30%;
 
-  &--open {
-    margin-right: 2em;
-  }
-
   &__header {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1em;
   }
 
   &__icon {
     cursor: pointer;
+  }
+
+  &--open {
+    margin-right: 2em;
+  }
+
+  &__title {
+    margin: 0;
   }
 }
