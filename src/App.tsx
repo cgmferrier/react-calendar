@@ -21,6 +21,7 @@ function App() {
     <Provider store={store}>
       <Calendar/>
       <Panel/>
+      <div id='modal'></div>
     </Provider>
   );
 }

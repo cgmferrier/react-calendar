@@ -1,10 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
+import AddReminder from 'components/add-reminder/add-reminder.component';
 import ReminderComponent from 'components/reminder/reminder.component';
 import moment from 'moment';
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
+import { connect, Provider, useSelector } from 'react-redux';
 import { togglePanel } from 'store/actions/layout.action';
+import store from 'store/index';
 import { getRemindersForSelectedDay, getSelectedDay } from 'store/reducers';
 import './reminder-panel.component.scss';
 
@@ -33,6 +36,10 @@ class ReminderPanel extends React.Component<{ open: boolean, dispatch: any }, {}
     this.props.dispatch(togglePanel(false));
   }
 
+  openModal(): void {
+    ReactDOM.render(<Provider store={store}><AddReminder/></Provider>, document.getElementById('modal'));
+  }
+
   render() {
     return (
       <section className={
@@ -52,7 +59,10 @@ class ReminderPanel extends React.Component<{ open: boolean, dispatch: any }, {}
           <div className='reminder-panel__body'>
             <div className='reminder-panel__info'>
               <SelectedDay/>
-              <div className='reminder-panel__info--light'>
+              <div
+                className='reminder-panel__info--light'
+                onClick={this.openModal}
+              >
                 Add
                 <FontAwesomeIcon
                   className='reminder-panel__icon'
