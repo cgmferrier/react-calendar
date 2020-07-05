@@ -1,4 +1,5 @@
 import MomentUtils from '@date-io/moment';
+import { Button } from '@material-ui/core';
 import { KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import moment from 'moment';
 import React from 'react';
@@ -9,6 +10,12 @@ import './add-reminder.component.scss';
 const DatePicker = () => {
   let currentDate = moment(useSelector(getSelectedDay), 'DD/MM/yyyy');
   const [ selectedDate, setSelectedDate ] = React.useState(currentDate);
+
+  const closeModal = () => {
+    // Use store
+    console.log('use store to remove modal nodes')
+  }
+
   const updateDate = (date: any) => {
     setSelectedDate(date);
   };
@@ -44,7 +51,7 @@ const DatePicker = () => {
               variant='inline'
             />
           </MuiPickersUtilsProvider>
-          <div className='form-element'>
+          <div className='form-element form-element--no-padding'>
             <label htmlFor='reminder-color-picker'>Choose a color</label>
             <select id='reminder-color-picker'>
               <option>Red</option>
@@ -56,6 +63,12 @@ const DatePicker = () => {
         <div className='form-element'>
           <label htmlFor='reminder-description'>Description</label>
           <textarea id='reminder-description'/>
+        </div>
+        <div className='form__actions'>
+          <Button variant="outlined" color='primary' onClick={closeModal}>Cancel</Button>
+          <Button variant="contained" color="primary">
+            Create reminder
+          </Button>
         </div>
       </div>
     </div>

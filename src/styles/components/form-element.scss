@@ -1,6 +1,20 @@
 .form-element {
   display: flex;
   flex-direction: column;
+  padding-bottom: 1.5em;
   text-align: left;
   width: 50%;
+
+  label {
+    margin-bottom: 10px;
+  }
+
+  select, input, textarea {
+    font-family: 'Roboto', sans-serif;
+    padding: 0.65em;
+  }
+
+  &--no-padding {
+    padding-bottom: 0;
+  }
 }

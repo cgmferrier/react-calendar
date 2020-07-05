@@ -1,0 +1,11 @@
+.form {
+  &__actions {
+    margin-top: 1em;
+    text-align: right;
+    width: 100%;
+
+    .MuiButton-root {
+      margin-left: 10px;
+    }
+  }
+}
