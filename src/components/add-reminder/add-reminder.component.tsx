@@ -4,13 +4,11 @@ import { KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from 
 import ColorPicker from 'components/color-picker/color-picker.component';
 import moment from 'moment';
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
-import { getSelectedDay } from 'store/reducers';
+import { connect } from 'react-redux';
 import './add-reminder.component.scss';
 
 const DatePicker = () => {
-  let currentDate = moment(useSelector(getSelectedDay), 'DD/MM/yyyy');
-  const [ selectedDate, setSelectedDate ] = React.useState(currentDate);
+  const [ selectedDate, setSelectedDate ] = React.useState(new Date());
 
   const closeModal = () => {
     // Use store
@@ -33,6 +31,11 @@ const DatePicker = () => {
           <div className='form-element'>
             <label htmlFor='reminder-name'>Name for reminder</label>
             <input id='reminder-name' type='text'/>
+          </div>
+          <ColorPicker updateColor={updateColor}/>
+          <div className='form-element'>
+            <label htmlFor='reminder-description'>Description</label>
+            <textarea id='reminder-description'/>
           </div>
           <div className='add-reminder__pickers'>
             <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -58,11 +61,6 @@ const DatePicker = () => {
                 variant='inline'
               />
             </MuiPickersUtilsProvider>
-          </div>
-          <ColorPicker updateColor={updateColor}/>
-          <div className='form-element'>
-            <label htmlFor='reminder-description'>Description</label>
-            <textarea id='reminder-description'/>
           </div>
           <div className='form__actions'>
             <Button variant="outlined" color='primary' onClick={closeModal}>Cancel</Button>

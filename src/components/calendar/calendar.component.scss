@@ -1,13 +1,27 @@
 .calendar {
+  &__button {
+    margin-left: 1em !important;
+  }
+
   &__grid {
     display: grid;
     grid-gap: 2px;
     grid-template-columns: repeat(7, 1fr);
   }
 
+  &__group {
+    align-items: center;
+    display: flex;
+  }
+
   &__header {
     align-items: center;
     display: flex;
     justify-content: space-between;
+  }
+
+  &__icon {
+    cursor: pointer;
+    margin-left: 0.4em;
   }
 }

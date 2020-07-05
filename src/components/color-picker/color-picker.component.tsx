@@ -14,8 +14,8 @@ class ColorPicker extends React.Component<{ updateColor: any }, { color: string 
       <div className='color-picker'>
         <div className='form-element'>
           <label htmlFor='reminder-color-picker'>Choose a color</label>
-          <select id='reminder-color-picker' value={this.state?.color} onChange={this.assignColor.bind(this)}>
-            <option value={undefined}>Pick a color</option>
+          <select id='reminder-color-picker' value={this.state?.color ?? ''} onChange={this.assignColor.bind(this)}>
+            <option value='' disabled>Pick a color</option>
             <option value='red'>Red</option>
             <option value='white'>White</option>
             <option value='blue'>Blue</option>

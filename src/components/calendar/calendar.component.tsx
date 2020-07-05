@@ -1,6 +1,12 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from '@material-ui/core';
+import AddReminder from 'components/add-reminder/add-reminder.component';
 import Day from 'components/day/day.component';
 import moment from 'moment';
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from 'store';
 import './calendar.component.scss';
 
 class Calendar extends React.Component {
@@ -32,14 +38,30 @@ class Calendar extends React.Component {
     return listOfDays;
   }
 
+  openModal(): void {
+    ReactDOM.render(<Provider store={store}><AddReminder/></Provider>, document.getElementById('modal'));
+  }
+
   render() {
     return (
       <section className='calendar'>
         <header className='calendar__header'>
-          <h2 className='calendar__title'>{this.state.currentMonth}</h2>
+          <div className='calendar__group'>
+            <h2 className='calendar__title'>{this.state.currentMonth} {this.state.currentDate.getFullYear()}</h2>
+            <Button
+              className='calendar__button'
+              color='primary'
+              variant='contained'
+              onClick={this.openModal}
+              disableElevation
+            >
+              Add reminder
+              <FontAwesomeIcon className='calendar__icon' icon={[ 'fas', 'plus' ]}/>
+            </Button>
+          </div>
           <div className='calendar__navigation'>Navigation arrows here</div>
         </header>
-        <div className='calendar__grid'>{ this.listOfDays() }</div>
+        <div className='calendar__grid'>{this.listOfDays()}</div>
       </section>
     )
   }
