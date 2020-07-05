@@ -1,4 +1,7 @@
 .form {
+  display: flex;
+  flex-wrap: wrap;
+
   &__actions {
     margin-top: 1em;
     text-align: right;

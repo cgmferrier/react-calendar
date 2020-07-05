@@ -1,0 +1,27 @@
+.color-picker {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1em;
+  width: calc(50% - 1em);
+
+  &__color {
+    border: 1px solid #4b4c4c;
+    border-radius: 4px;
+    height: 2em;
+    width: 2em;
+    transition: background 250ms ease-in-out;
+
+    &--blue {
+      background: #b3cde0;
+    }
+
+    &--red {
+      background: #dd1818;
+    }
+
+    &--white {
+      background: #fff;
+    }
+  }
+}

@@ -3,7 +3,7 @@
   flex-direction: column;
   padding-bottom: 1.5em;
   text-align: left;
-  width: 50%;
+  width: calc(50% - 1em);
 
   label {
     margin-bottom: 10px;
@@ -12,6 +12,10 @@
   select, input, textarea {
     font-family: 'Roboto', sans-serif;
     padding: 0.65em;
+  }
+
+  &:nth-of-type(odd) {
+    margin-right: 1em;
   }
 
   &--no-padding {
