@@ -8,7 +8,7 @@ import { togglePanel } from 'store/actions/layout.action';
 import { getRemindersForSelectedDay, getSelectedDay } from 'store/reducers';
 import './reminder-panel.component.scss';
 
-export const Reminders = () => {
+const Reminders = () => {
   const reminders = useSelector(getRemindersForSelectedDay);
   return (
     <div className='reminder-panel__list'>
@@ -21,7 +21,7 @@ export const Reminders = () => {
   )
 }
 
-export const SelectedDay = () => {
+const SelectedDay = () => {
   const fullDate = moment(useSelector(getSelectedDay), 'DD/MM/YYYY');
   const dayName = fullDate.format('dddd');
   return <div className='reminder-panel__day'>{dayName} {fullDate.format('LL')}</div>;
@@ -48,9 +48,13 @@ class ReminderPanel extends React.Component<{ open: boolean, dispatch: any }, {}
             onClick={this.closePanel.bind(this)}
           />
         </div>
-        <div className='reminder-panel__body'>
-          <SelectedDay/>
-          <Reminders/>
+        <div className='reminder-panel__wrapper'>
+          <div className='reminder-panel__body'>
+            <div className='reminder-panel__info'>
+              <SelectedDay/>
+            </div>
+            <Reminders/>
+          </div>
         </div>
       </section>
     );
