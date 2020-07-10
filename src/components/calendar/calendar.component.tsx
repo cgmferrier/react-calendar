@@ -6,8 +6,30 @@ import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { ModalProvider, ModalService } from 'shared/services/modal.service';
 import store from 'store';
 import './calendar.component.scss';
+
+const AddReminderButton = () => {
+  const modalService = ModalService();
+
+  const onclick = () => {
+    modalService.openModal(<AddReminder/>);
+  }
+
+  return (
+    <Button
+      className='calendar__button'
+      color='primary'
+      variant='contained'
+      onClick={onclick}
+      disableElevation
+    >
+      Add reminder
+      <FontAwesomeIcon className='calendar__icon' icon={[ 'fas', 'plus' ]}/>
+    </Button>
+  );
+}
 
 class Calendar extends React.Component {
   state: { currentDate: Date, currentDay: number; currentMonth: string, totalDays: number };
@@ -43,26 +65,20 @@ class Calendar extends React.Component {
   }
 
   render() {
+
     return (
-      <section className='calendar'>
-        <header className='calendar__header'>
-          <div className='calendar__group'>
-            <h2 className='calendar__title'>{this.state.currentMonth} {this.state.currentDate.getFullYear()}</h2>
-            <Button
-              className='calendar__button'
-              color='primary'
-              variant='contained'
-              onClick={this.openModal}
-              disableElevation
-            >
-              Add reminder
-              <FontAwesomeIcon className='calendar__icon' icon={[ 'fas', 'plus' ]}/>
-            </Button>
-          </div>
-          <div className='calendar__navigation'>Navigation arrows here</div>
-        </header>
-        <div className='calendar__grid'>{this.listOfDays()}</div>
-      </section>
+      <ModalProvider>
+        <section className='calendar'>
+          <header className='calendar__header'>
+            <div className='calendar__group'>
+              <h2 className='calendar__title'>{this.state.currentMonth} {this.state.currentDate.getFullYear()}</h2>
+              <AddReminderButton/>
+            </div>
+            <div className='calendar__navigation'>Navigation arrows here</div>
+          </header>
+          <div className='calendar__grid'>{this.listOfDays()}</div>
+        </section>
+      </ModalProvider>
     )
   }
 }

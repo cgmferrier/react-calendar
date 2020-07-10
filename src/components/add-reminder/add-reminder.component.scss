@@ -1,9 +1,5 @@
 .add-reminder {
-  background: #f5f5f5;
-  border-radius: 4px;
-  padding: 2em;
   text-align: center;
-  width: 80%;
 
   &__picker {
     &:not(:last-of-type) {
