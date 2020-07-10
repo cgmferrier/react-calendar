@@ -1,4 +1,11 @@
 .modal {
+  &__content {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 2em;
+    width: 80%;
+  }
+
   &__wrapper {
     align-items: center;
     background: rgba(black, 0.7);
